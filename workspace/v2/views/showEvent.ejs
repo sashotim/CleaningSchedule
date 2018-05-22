@@ -1,0 +1,30 @@
+<% include partials/header %>
+    <div class="ui main text container">
+   	    <div class="ui huge header"><%=event.title%></div>
+        <div class="ui top attached segment">
+	        <div class="item">
+	           <img class="ui centered rounded image" src="<%= event.image %>">
+	            <div class="content">
+	                <div class="meta">
+    	                <span><%= event.created.toDateString() %></span>
+	                </div>
+            	     <div class="description">
+            	        <p><%- event.body %></p>
+            	     </div>
+	            </div>
+            </div>
+            <a href="/events/<%=event._id%>/edit" class="ui orange basic button">Update Event</a>
+            <form style="display: inline" method="POST" action="/events/<%=event._id%>?_method=DELETE">
+                <button class="ui red basic button" type="submit">Delete Event</button>
+            </form>
+        </div>
+        
+    </div>
+    
+
+
+<% include partials/footer %>
+
+ 
+
+

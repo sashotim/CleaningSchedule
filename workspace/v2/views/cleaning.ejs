@@ -1,0 +1,61 @@
+<% include partials/header %>
+<link rel="stylesheet" href="/stylesheets/cleaning.css">
+<script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
+  
+<div class="container">
+  <header class="jumbotron">
+    <h1>Cleaning Schedule Page</h1>
+    <h6>Today is: <%= today %></h6>
+    <% var currentHasToClean; %>
+    <% hasToCleans.forEach(function(hasToClean){ %>
+      <% if(hasToClean.doneBy.name == currentUser.name){ %>
+        <% if(endOfThisWeek.toISOString() == hasToClean.weekend.end.toISOString()){ %>
+          <% currentHasToClean = hasToClean %>
+          <h3>This week you have to clean the <%= hasToClean.task %></h3>
+        <% } %>
+      <% } %>
+    <% }); %>
+    
+    
+    <form method="POST" action="/cleaning/<%=currentHasToClean._id%>?_method=PUT">
+      <div>
+        <button class="btn btn-success" id="doneButton">I'm done with the cleaning!</button>
+      </div>
+    </form>
+  </header>
+  
+  <button class="btn btn-default" id="viewScheduleButton">View Full Schedule</button>
+  <table id="myTable" class="table table-striped hidden">
+    <thead class="thead-light">
+      <tr>
+        <% users.forEach(function(user){ %>
+            <th><%= user.name %></th>
+        <% }); %>
+        <th>Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% dates.forEach(function(date){ %>
+     <tr>
+      <% users.forEach(function(user){ %>
+          <td>
+              <% user.hasToClean.forEach(function(hasToClean){ %>
+              <% if(hasToClean.weekend.begin.toDateString() == date.begin.toDateString()){ %>
+                <span <% if(hasToClean.isDone){ %> style="text-decoration: line-through" <% } %> ><%= hasToClean.task %></span>
+            <%  }
+            }); %>
+          </td>
+      <% }); %>
+      <td><%= (date.begin).toDateString()%> - <%= (date.end).toDateString() %></td>
+    </tr>
+    <% }); %>
+    </tbody>
+  </table> 
+</div>
+
+
+<script src="/scripts/cleaning.js"></script>
+<% include partials/footer %>

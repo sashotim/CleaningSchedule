@@ -1,0 +1,35 @@
+<% include partials/header %>
+   <div class="ui main text container">
+   	<div class="ui huge header">Event Site</div>
+    <div class="ui top attached segment">
+        <a class="btn btn-default"href="events/new">Create New Event</a>
+<div class="ui divided items">
+	<% events.forEach(function(event){ %>
+	 <div class="item">
+	    <div class="image">
+	      <img src="<%= event.image %>">
+	    </div>
+	    <div class="content">
+	      <a class="header"><%= event.title %></a>
+	      <div class="meta">
+	        <span class="cinema"><%= event.created.toDateString() %></span>
+	      </div>
+	      <div class="description">
+	        <p><%= event.body.substring(0,100); %></p>
+	      </div>
+	      <div class="extra">
+	        <a href="/events/<%=event._id %>" class="ui floated basic violet button">
+	          Read More
+	          <i class="right chevron icon"></i>
+	        </a>
+	      </div>
+	    </div>
+	  </div>
+	<% }); %>
+</div>
+</div>
+    
+  </div>
+<% include partials/footer %>
+
+ 

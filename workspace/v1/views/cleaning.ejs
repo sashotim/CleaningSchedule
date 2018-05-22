@@ -1,0 +1,44 @@
+<% include partials/header %>
+<link rel="stylesheet" href="public/stylesheets/cleaning.css">
+<script type="text/javascript" src="assets/js/lib/jquery-2.1.4.min.js"></script>
+
+<div class="container">
+  <header class="jumbotron">
+    <h1>Cleaning Schedule Page</h1>
+    <h6>Today is: <%= today %></h6>
+    <h3>This week you have to clean the <%= users[0].hasToClean %></h3>
+  </header>
+  
+  <div>
+      <button class="btn btn-success">I'm done with the cleaning!</button>
+  </div>
+  
+  <button class="btn btn-default">View Full Schedule</button>
+  
+  <table class="table table-striped">
+    <thead class="thead-light">
+      <tr>
+        <% users.forEach(function(user){ %>
+            <th><%= user.name %></th>
+        <% }); %>
+        <th>Date</th>
+      </tr>
+    </thead>
+    <% dates.forEach(function(date){ %>
+     <tr>
+      <% users.forEach(function(user){ %>
+          <td>
+            <%= user.hasToClean %>
+              
+          </td>
+          
+            
+      <% }); %>
+      <td><%= date %></td>
+    </tr>
+    <% }); %>
+  </table> 
+</div>
+
+ <script src="scripts/cleaning.js"></script>
+<% include partials/footer %>
