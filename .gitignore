@@ -3,6 +3,25 @@ node_modules
 .c9
 .DS_Store
 Thumbs.db
+.cache/heroku
+.codeintel
+.gnupg
+.node-gyp/6.11.2
+.npm
+.nvm
+.ssh
+.bash_aliases
+.bash_history
+.bash_logout
+.bashrc
+.dbshell
+.gemrc
+.gitconfig
+.hgrc
+.mongorc.js
+.npmrc
+.profile
+.profileE
 
 # C/C++
 *.slo
